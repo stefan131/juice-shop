@@ -44,7 +44,8 @@ export class TwoFactorAuthEnterComponent {
 
     this.twoFactorAuthService.verify(fields.token).subscribe((authentication) => {
       localStorage.setItem('token', authentication.token)
-      this.cookieService.put('token', authentication.token)
+      //EDIT this.cookieService.put('token', authentication.token)
+      this.cookieService.put('token', authentication.token, {httpOnly: true, secure: true})
       sessionStorage.setItem('bid', authentication.bid.toString())
       /* Use userService to notifiy if user has logged in*/
       /* this.userService.isLoggedIn = true;*/
